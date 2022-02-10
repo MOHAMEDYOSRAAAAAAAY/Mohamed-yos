@@ -1,0 +1,165 @@
+
+Attiny_85.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         00000108  00000000  00000000  00000054  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0e c0       	rjmp	.+28     	; 0x1e <__ctors_end>
+   2:	15 c0       	rjmp	.+42     	; 0x2e <__bad_interrupt>
+   4:	14 c0       	rjmp	.+40     	; 0x2e <__bad_interrupt>
+   6:	13 c0       	rjmp	.+38     	; 0x2e <__bad_interrupt>
+   8:	12 c0       	rjmp	.+36     	; 0x2e <__bad_interrupt>
+   a:	11 c0       	rjmp	.+34     	; 0x2e <__bad_interrupt>
+   c:	10 c0       	rjmp	.+32     	; 0x2e <__bad_interrupt>
+   e:	0f c0       	rjmp	.+30     	; 0x2e <__bad_interrupt>
+  10:	0e c0       	rjmp	.+28     	; 0x2e <__bad_interrupt>
+  12:	0d c0       	rjmp	.+26     	; 0x2e <__bad_interrupt>
+  14:	0c c0       	rjmp	.+24     	; 0x2e <__bad_interrupt>
+  16:	0b c0       	rjmp	.+22     	; 0x2e <__bad_interrupt>
+  18:	0a c0       	rjmp	.+20     	; 0x2e <__bad_interrupt>
+  1a:	09 c0       	rjmp	.+18     	; 0x2e <__bad_interrupt>
+  1c:	08 c0       	rjmp	.+16     	; 0x2e <__bad_interrupt>
+
+0000001e <__ctors_end>:
+  1e:	11 24       	eor	r1, r1
+  20:	1f be       	out	0x3f, r1	; 63
+  22:	cf e5       	ldi	r28, 0x5F	; 95
+  24:	d2 e0       	ldi	r29, 0x02	; 2
+  26:	de bf       	out	0x3e, r29	; 62
+  28:	cd bf       	out	0x3d, r28	; 61
+  2a:	5a d0       	rcall	.+180    	; 0xe0 <main>
+  2c:	6b c0       	rjmp	.+214    	; 0x104 <_exit>
+
+0000002e <__bad_interrupt>:
+  2e:	e8 cf       	rjmp	.-48     	; 0x0 <__vectors>
+
+00000030 <pinMode>:
+  30:	38 2f       	mov	r19, r24
+  32:	66 23       	and	r22, r22
+  34:	69 f0       	breq	.+26     	; 0x50 <__SREG__+0x11>
+  36:	61 30       	cpi	r22, 0x01	; 1
+  38:	b1 f4       	brne	.+44     	; 0x66 <__SREG__+0x27>
+  3a:	27 b3       	in	r18, 0x17	; 23
+  3c:	81 e0       	ldi	r24, 0x01	; 1
+  3e:	90 e0       	ldi	r25, 0x00	; 0
+  40:	02 c0       	rjmp	.+4      	; 0x46 <__SREG__+0x7>
+  42:	88 0f       	add	r24, r24
+  44:	99 1f       	adc	r25, r25
+  46:	3a 95       	dec	r19
+  48:	e2 f7       	brpl	.-8      	; 0x42 <__SREG__+0x3>
+  4a:	28 2b       	or	r18, r24
+  4c:	27 bb       	out	0x17, r18	; 23
+  4e:	08 95       	ret
+  50:	27 b3       	in	r18, 0x17	; 23
+  52:	81 e0       	ldi	r24, 0x01	; 1
+  54:	90 e0       	ldi	r25, 0x00	; 0
+  56:	02 c0       	rjmp	.+4      	; 0x5c <__SREG__+0x1d>
+  58:	88 0f       	add	r24, r24
+  5a:	99 1f       	adc	r25, r25
+  5c:	3a 95       	dec	r19
+  5e:	e2 f7       	brpl	.-8      	; 0x58 <__SREG__+0x19>
+  60:	80 95       	com	r24
+  62:	82 23       	and	r24, r18
+  64:	87 bb       	out	0x17, r24	; 23
+  66:	08 95       	ret
+
+00000068 <digitalWrite>:
+  68:	38 2f       	mov	r19, r24
+  6a:	66 23       	and	r22, r22
+  6c:	69 f0       	breq	.+26     	; 0x88 <digitalWrite+0x20>
+  6e:	61 30       	cpi	r22, 0x01	; 1
+  70:	b1 f4       	brne	.+44     	; 0x9e <digitalWrite+0x36>
+  72:	28 b3       	in	r18, 0x18	; 24
+  74:	81 e0       	ldi	r24, 0x01	; 1
+  76:	90 e0       	ldi	r25, 0x00	; 0
+  78:	02 c0       	rjmp	.+4      	; 0x7e <digitalWrite+0x16>
+  7a:	88 0f       	add	r24, r24
+  7c:	99 1f       	adc	r25, r25
+  7e:	3a 95       	dec	r19
+  80:	e2 f7       	brpl	.-8      	; 0x7a <digitalWrite+0x12>
+  82:	28 2b       	or	r18, r24
+  84:	28 bb       	out	0x18, r18	; 24
+  86:	08 95       	ret
+  88:	28 b3       	in	r18, 0x18	; 24
+  8a:	81 e0       	ldi	r24, 0x01	; 1
+  8c:	90 e0       	ldi	r25, 0x00	; 0
+  8e:	02 c0       	rjmp	.+4      	; 0x94 <digitalWrite+0x2c>
+  90:	88 0f       	add	r24, r24
+  92:	99 1f       	adc	r25, r25
+  94:	3a 95       	dec	r19
+  96:	e2 f7       	brpl	.-8      	; 0x90 <digitalWrite+0x28>
+  98:	80 95       	com	r24
+  9a:	82 23       	and	r24, r18
+  9c:	88 bb       	out	0x18, r24	; 24
+  9e:	08 95       	ret
+
+000000a0 <setPort>:
+  a0:	88 bb       	out	0x18, r24	; 24
+  a2:	08 95       	ret
+
+000000a4 <setPortDirection>:
+  a4:	88 23       	and	r24, r24
+  a6:	29 f0       	breq	.+10     	; 0xb2 <setPortDirection+0xe>
+  a8:	81 30       	cpi	r24, 0x01	; 1
+  aa:	21 f4       	brne	.+8      	; 0xb4 <setPortDirection+0x10>
+  ac:	8f ef       	ldi	r24, 0xFF	; 255
+  ae:	87 bb       	out	0x17, r24	; 23
+  b0:	08 95       	ret
+  b2:	17 ba       	out	0x17, r1	; 23
+  b4:	08 95       	ret
+
+000000b6 <digitalRead>:
+  b6:	26 b3       	in	r18, 0x16	; 22
+  b8:	30 e0       	ldi	r19, 0x00	; 0
+  ba:	02 c0       	rjmp	.+4      	; 0xc0 <digitalRead+0xa>
+  bc:	35 95       	asr	r19
+  be:	27 95       	ror	r18
+  c0:	8a 95       	dec	r24
+  c2:	e2 f7       	brpl	.-8      	; 0xbc <digitalRead+0x6>
+  c4:	82 2f       	mov	r24, r18
+  c6:	81 70       	andi	r24, 0x01	; 1
+  c8:	08 95       	ret
+
+000000ca <TogPin>:
+  ca:	98 b3       	in	r25, 0x18	; 24
+  cc:	21 e0       	ldi	r18, 0x01	; 1
+  ce:	30 e0       	ldi	r19, 0x00	; 0
+  d0:	02 c0       	rjmp	.+4      	; 0xd6 <TogPin+0xc>
+  d2:	22 0f       	add	r18, r18
+  d4:	33 1f       	adc	r19, r19
+  d6:	8a 95       	dec	r24
+  d8:	e2 f7       	brpl	.-8      	; 0xd2 <TogPin+0x8>
+  da:	92 27       	eor	r25, r18
+  dc:	98 bb       	out	0x18, r25	; 24
+  de:	08 95       	ret
+
+000000e0 <main>:
+  e0:	80 e0       	ldi	r24, 0x00	; 0
+  e2:	60 e0       	ldi	r22, 0x00	; 0
+  e4:	a5 df       	rcall	.-182    	; 0x30 <pinMode>
+  e6:	81 e0       	ldi	r24, 0x01	; 1
+  e8:	61 e0       	ldi	r22, 0x01	; 1
+  ea:	a2 df       	rcall	.-188    	; 0x30 <pinMode>
+  ec:	80 e0       	ldi	r24, 0x00	; 0
+  ee:	61 e0       	ldi	r22, 0x01	; 1
+  f0:	bb df       	rcall	.-138    	; 0x68 <digitalWrite>
+  f2:	80 e0       	ldi	r24, 0x00	; 0
+  f4:	e0 df       	rcall	.-64     	; 0xb6 <digitalRead>
+  f6:	88 23       	and	r24, r24
+  f8:	11 f4       	brne	.+4      	; 0xfe <main+0x1e>
+  fa:	81 e0       	ldi	r24, 0x01	; 1
+  fc:	f8 cf       	rjmp	.-16     	; 0xee <main+0xe>
+  fe:	81 e0       	ldi	r24, 0x01	; 1
+ 100:	60 e0       	ldi	r22, 0x00	; 0
+ 102:	f6 cf       	rjmp	.-20     	; 0xf0 <main+0x10>
+
+00000104 <_exit>:
+ 104:	f8 94       	cli
+
+00000106 <__stop_program>:
+ 106:	ff cf       	rjmp	.-2      	; 0x106 <__stop_program>
